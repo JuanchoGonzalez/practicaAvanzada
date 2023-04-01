@@ -58,7 +58,7 @@ abso :: Int -> Int
 abso n | n >= 0 = n
        | n < 0  = (-n)
   
--- 6) edad con ifs ,acomodar casos
+-- 6) edad con ifs 
 
 edad :: (Int,Int,Int) -> (Int,Int,Int) -> Int
 edad (x,y,z) (n,m,k) = if k>z then (if m<y then (k-z)-1 else (if n<x then (k-z)-1 else k-z) ) else (if m<y then (z-k) else (if n<x then (z-k)-1 else (z-k) ))
