@@ -8,18 +8,21 @@ merge (x:xs) (y:ys) | (x <= y) = x:merge xs (y:ys)
 
 -- ej 2)
 
-{-
-ordList :: [a] -> [a]
-ordList [] = []
-ordList xs = minimum xs:ordList (sacarMinimo xs)   
+ordList :: (Ord a) => [a] -> [a]
+ordList []       = []
+ordList [x]      = [x]
+ordList (x:y:xs) = minimum (x:y:xs):ordList (sacarMinimo (minimum (x:y:xs)) (x:y:xs))   
 
+-- concatena el minimo de la lista con la recursion de la funcion auxiliar que saca el minimo de una lista
+-- mas toda la lista completa(que ya fue sacado el minimo), cuando llega a que quede una lista unitaria(es el mayor valor), lo concatena al final como viene la recursion.
 
-sacarMinimo :: (Ord a) => [a] -> [a]
-sacarMinimo []       = []
-sacarMinimo (x:y:xs) | (minimum xs == x) = (y:xs)        
-                     | (minimum xs == y) = (x:xs) 
-                     | otherwise = sacarMinimo xs
--}
+sacarMinimo :: (Eq a) => a -> [a] -> [a]
+sacarMinimo _ []     = []
+sacarMinimo n (x:xs) | (n == x) = xs         
+                     | otherwise = x:sacarMinimo n xs
+                     
+-- esta funcion auxiliar implementada sola le tendrias q pasar como precondicion el minimo valor de la lista, es decir 
+-- debes saber cual es la lista anticipadamente, aunque en la funcion original anda genial.
 
 -- ej 3) 
 
@@ -55,9 +58,6 @@ esCuadradoPerf n = ((sqrt n) == esEntero n)
 
 esEntero ... 
 -}
-
--- 49 --  
--- 
 
 -- ej 8) 
 
