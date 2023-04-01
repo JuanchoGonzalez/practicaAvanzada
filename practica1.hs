@@ -28,7 +28,7 @@ intToList :: Int -> [Int]
 intToList 0 = []
 intToList x = intToList (div x 10) ++ [mod x 10] 
 
--- segunda opcion 
+-- Segunda opcion 
 
 intToList2 :: Int -> [Int] 
 intToList2 0 = []
