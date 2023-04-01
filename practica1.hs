@@ -47,7 +47,6 @@ arrojara resultado igual a 3 , ya que tira los primeros 3 es decir 0,1 y 2 y el 
 
 el tipo resultante es un caracter '3'
 podria ser el . creo
-
 -}
 
 
