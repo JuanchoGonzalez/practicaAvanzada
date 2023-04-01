@@ -52,6 +52,8 @@ hamming (x:xs) (y:ys) | (x /= y) = 1 + hamming xs ys
 {-
 esCuadradoPerf :: (Num a) => a -> Bool
 esCuadradoPerf n = ((sqrt n) == esEntero n)
+
+esEntero ... 
 -}
 
 -- 49 --  
