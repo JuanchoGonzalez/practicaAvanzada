@@ -71,17 +71,15 @@ nelem (x:xs) 0 = x
 nelem (x:xs) n = nelem xs (n-1)    
 
 -- ej 10)
-{-
-posicionesC :: (Eq a) => [a] -> a -> [Int]
+
+posicionesC :: [Char] -> Char -> [Int]
 posicionesC [] _ = []
-posicionesC (x:xs) c | (x == c) = (nelem xs ):posicionesC xs c
-                     | otherwise = posicionesC xs c 
--}
--- "catamarca" ´a´ = [1,3,5,8]
--- c = a , no entonces posicionesC "atamarca" ´a´
--- a = a , si entonces 1:"tamarca" ´a´
--- t = a , no entonces "amarca" ´a´
--- 
+posicionesC xs c = aux xs c 0
+
+aux ::[Char] -> Char -> Int -> [Int]
+aux [] _ _ = []
+aux (x:xs) c n | x == c = n: aux xs c (n+1)
+               | otherwise = aux xs c (n+1)
 
 -- ej 11) 
 
