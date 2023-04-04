@@ -36,7 +36,7 @@ dosAlaN n = 2 * dosAlaN (n-1)
 -- con recursion a la derecha 
 
 binario :: Int -> [Int]
-binario 0 = [0]
+binario 0 = []
 binario 1 = [1]
 binario n | mod n 2 == 0 = binario (div n 2) ++ [0]
           | otherwise = binario (div n 2) ++ [1]
@@ -67,11 +67,12 @@ hamming (x:xs) (y:ys) | (x /= y) = 1 + hamming xs ys
                       | otherwise = hamming xs ys
 
 -- ej 7)
+
+-- cuadrado perfecto , cuando n lo puedo escribir x*x , siendo x entre 0 y n  
+
 {-
 esCuadradoPerf :: (Num a) => a -> Bool
-esCuadradoPerf n = ((sqrt n) == esEntero n)
-
-esEntero ... 
+esCuadradoPerf n = ((sqrt n) == esEntero n) 
 -}
 
 -- ej 8) 
