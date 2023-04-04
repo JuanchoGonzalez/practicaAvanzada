@@ -76,9 +76,13 @@ esEntero ...
 
 -- ej 8) 
 
-repet :: a -> Int -> [a]
-repet _ 0 = []
-repet z n = z:repet z (n-1)
+-- dada una lista de elementos, un elemento y un entero n, retorne true si z aparece n veces
+
+repet :: (Eq a) => [a] -> a -> Int -> Bool
+repet [] _ 0     = True  
+repet [] _ _     = False 
+repet (x:xs) z n | (x == z) = repet xs z (n-1)  
+                 | otherwise = repet xs z n
 
 -- ej 9)
 
