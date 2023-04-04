@@ -8,6 +8,8 @@ merge (x:xs) (y:ys) | (x <= y) = x:merge xs (y:ys)
 
 -- ej 2)
 
+-- selection sort, toma el minimo de la lista y lo elimina el minimo de la lista  
+
 ordList :: (Ord a) => [a] -> [a]
 ordList []       = []
 ordList [x]      = [x]
@@ -31,12 +33,25 @@ dosAlaN 0 = 1
 dosAlaN n = 2 * dosAlaN (n-1)          
 
 -- ej 4) 
+-- con recursion a la derecha 
 
 binario :: Int -> [Int]
 binario 0 = [0]
 binario 1 = [1]
 binario n | mod n 2 == 0 = binario (div n 2) ++ [0]
           | otherwise = binario (div n 2) ++ [1]
+
+-- otra solucion con recursion a la izquierda 
+
+binario2 :: Int -> [Int]
+binario2 0 = [0]
+binario2 1 = [1]
+binario2 n | mod n 2 == 0 = reverAux (0:binario2 (div n 2))
+           | otherwise = reverAux (1:binario2 (div n 2))
+
+reverAux :: [Int] -> [Int]
+reverAux [] = []
+reverAux xs = reverse xs
 
 -- ej 5)
 
