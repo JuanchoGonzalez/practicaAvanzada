@@ -207,14 +207,14 @@
 -- orden normal
 
 -- square.inf
--- [def inf]
--- square.(inf+1) 
 -- [def square]
--- inf+1 * inf+1
--- [def inf] 
--- (inf+1)+1 * inf+1
+-- inf * inf 
 -- [def inf]
--- ((inf+1)+1)+1 * inf+1
+-- inf+1 * inf
+-- [def inf] 
+-- (inf+1)+1 * inf
+-- [def inf]
+-- ((inf+1)+1)+1 * inf
 -- y se va..
 
 
