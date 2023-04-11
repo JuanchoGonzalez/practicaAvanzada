@@ -200,7 +200,7 @@
 -- square.(inf+1) 
 -- [def inf]
 -- square.(inf(inf+1))
--- [def inf]
+-- [def inf]a 
 -- square.(inf(inf(inf+1)))
 -- y se va... 
 
