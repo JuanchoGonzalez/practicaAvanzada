@@ -40,8 +40,9 @@ cuad xs = map (^2) xs
 -- [def :, cuentas]
 -- [25,4,1]
 
--- (^2) como es que da a -> b
--- b que da el resultado tiene que dar resultados de [b], es decir cuad le tengo q pasar numeros xq la funcion me devuelve un numero 
+-- (^2) como es que da a -> b ?? 
+-- b que da el resultado tiene que dar resultados de [b]
+-- es decir cuad le tengo q pasar numeros xq la funcion me devuelve un numero 
 
 
 {-
