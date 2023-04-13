@@ -158,35 +158,36 @@
 -- 256
 
 
--- lazy lo unico malo que tiene que ocupa mas memoria
-
 -- lazy 
 
 -- f 2 3
--- [def f]
+-- [def f]                             -- 1
 -- cuadrado f.2.2
--- [def cuad]
+-- [def cuad]                          -- 2
 -- x*x
 --    [ [x = f.2.2] ] 
--- [def f]
+-- [def de f.2.2]                      -- 3
 -- x*x
 -- [ [x = cuad(f.2.1)] ]
- -- [def cuad]
+ -- [def cuad]                         -- 4
   -- y*y 
-  -- [ [x = y*y], donde [y=f.2.1] ] 
-  -- [def f] 
-    --  cuad f.2.0
-    --  [def cuad]
-    --  z*z
-    --  [ [y = z*z], donde [z=f.2.0] ] 
-    --  [donde z=2]
-    --  [aritmetica]
-    --  2*2
-    --  4
-  --  [y=4]
-  --  4*4
- -- [x=16]
+  -- [ [x = y*y] , [y = f.2.1] ] 
+  -- [def f.2.1]                       -- 5
+  -- y*y
+  -- [y = cuad f.2.0]
+  -- [def cuad]                        -- 6
+    -- z*z 
+    -- [ [y = z*z] , z = f.2.0 == 2 ]  -- 7              -- 7
+    -- [aritmetica]                    -- 8
+    -- 2*2  
+    -- [aritmetica]                    -- 9
+    -- 4
+  -- [y=4] [reemplazo]                 -- 10
+  -- 4*4 
+  -- [aritmetica]                      -- 11
+ -- [x=16] [reemplazo]                 -- 12
 -- 16*16
+-- [aritmetica]                        -- 13
 -- 256
 
 -- 13 pasos en total, hacer de nuevo 
