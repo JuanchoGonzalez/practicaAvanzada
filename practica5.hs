@@ -24,7 +24,25 @@ prim5 xs = take 5 xs
 
 -- ej 5) 
 
-cuad (x:xs) = map (^2) (x:xs)  
+cuad xs = map (^2) xs  
+
+-- cuad [5,2,1]
+-- [def de map] 
+-- map (^2) [5,2,1]
+-- [def de map]
+-- (^2) 5 : map (^2) [2,1]
+-- [def de ^2 y de map]
+-- 25 : (^2) 2 : map (^2) [1]
+-- [def de ^2 y de map]
+-- 25 : 4 : (^2) 1 : map (^2) []
+-- [def de ^2 y de map caso base]
+-- 25 : 4 : 1 : []
+-- [def :, cuentas]
+-- [25,4,1]
+
+-- (^2) como es que da a -> b
+-- b que da el resultado tiene que dar resultados de [b], es decir cuad le tengo q pasar numeros xq la funcion me devuelve un numero 
+
 
 {-
 map :: (a -> b) -> [a] -> [b]
@@ -53,7 +71,21 @@ divs n = filter (esDivisor n) [1..n]
 
 esDivisor n m = mod n m == 0 
 
--- divisoresDeN n = [x | x <- [1..n] ,mod n x == 0]
+{-
+filter :: (a -> Bool) -> [a] -> [a]
+filter f []     = []
+filter f (x:xs) | f x == True = x:filter f xs
+                | otherwise = filter f xs
+-}
+{-
+divs n = filter (esDivisor n) [1..n]
+
+divs 4 
+= [def de filter]
+filter (esDivisor 4) [1..4]
+= 
+
+-}
 
 -- ej 7)
 
