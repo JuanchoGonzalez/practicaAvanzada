@@ -169,3 +169,66 @@ tamFoldl xs = foldl (contarFoldl) 0 xs
 contarFoldl :: Int -> a -> Int -- a -> b -> a
 contarFoldl acc _ = acc + 1
 
+
+-- Listas por comprension
+
+-- ej 14) 
+
+sucesores :: [Int] -> [Int]
+sucesores xs = [n+1 | n <- xs]
+
+sucesores2 :: [Int] -> [Int]
+sucesores2 xs = [x+1 | x <- xs]
+
+-- ej 15) 
+
+cuadrados :: [Int] -> [Int]
+cuadrados xs = [n^2 | n <- xs]
+
+-- ej 16)
+
+paresMayDiez :: [Int] -> [Int]
+paresMayDiez xs = [n | n <- xs , mod n 2 == 0 , n > 10]
+
+-- ej 17)
+
+divisores :: Int -> [Int]
+divisores n = [x | x <- [1..n] ,mod n x == 0]
+
+-- ej 18)
+{-
+todosOcurrenEn :: (Eq a) => [a] -> [a] -> Bool
+todosOcurrenEn [] ys         = True
+todosOcurrenEn (x:xs) []     = False
+todosOcurrenEn (x:xs) (y:ys) = 
+
+
+[1,5,2,5] [5,1,2,4]
+
+
+
+-}
+
+-- ej 19)
+
+primEntre2yN :: Int -> [Int]
+primEntre2yN n = [x | x <- [2..n] , esPrimo x]
+
+-- ej 20)
+
+prodCartesiano :: [Int] -> [Int] -> [(Int,Int)]
+prodCartesiano xs ys = [(x,y) | x <- xs , y <- ys]
+
+-- ej 21)
+
+ocurrencia :: [Int] -> Int -> Int
+ocurrencia xs n = length [x | x <- xs , n == x]
+
+-- ej 22)
+
+-- ej 23) 
+
+-- ej 24)
+
+infPares :: [Int]
+infPares = [2*n | n <- [0..] ]

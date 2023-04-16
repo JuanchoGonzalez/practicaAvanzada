@@ -190,7 +190,6 @@
 -- [aritmetica]                        -- 13
 -- 256
 
--- 13 pasos en total, hacer de nuevo 
 
 -- ej 4)
 
@@ -227,3 +226,19 @@
 -- puede servir para casos particulares, "aplicativa" 
 
 
+-- ejercicio adicional
+
+-- cond :: Bool -> a -> a
+-- cond p x y | p == True = x
+--            | otherwise = y
+
+-- fac :: Num -> Num 
+-- fac n = cond (n==0) 1 (n * fac(n-1) )
+
+-- fac :: Int -> Int
+-- fac 0     = 1
+-- fac (n+1) = (n+1) * fac n 
+
+-- fac 2
+-- orden aplicativo
+-- 
