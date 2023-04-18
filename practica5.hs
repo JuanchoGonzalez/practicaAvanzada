@@ -196,18 +196,27 @@ divisores :: Int -> [Int]
 divisores n = [x | x <- [1..n] ,mod n x == 0]
 
 -- ej 18)
-{-
+
+-- sin listas por comprension 
+
 todosOcurrenEn :: (Eq a) => [a] -> [a] -> Bool
 todosOcurrenEn [] ys         = True
 todosOcurrenEn (x:xs) []     = False
-todosOcurrenEn (x:xs) (y:ys) = 
+todosOcurrenEn (x:xs) (y:ys) = length (x:xs) == contatoriaEsta (x:xs) (y:ys)  
+
+contatoriaEsta :: (Eq a) => [a] -> [a] -> Int
+contatoriaEsta [] ys         = 0
+contatoriaEsta (x:xs) []     = 0
+contatoriaEsta (x:xs) (y:ys) | elem x (y:ys) = 1 + contatoriaEsta xs (y:ys)
+                             | otherwise = contatoriaEsta xs (y:ys)
 
 
-[1,5,2,5] [5,1,2,4]
 
+-- con listas por comprension
 
+todosOcurrenEn2 xs ys = length xs == length [x | x <- xs , elem x ys]   
 
--}
+-- diferencia por recursion y por listas por comprension que diferencia de eficiencia, de codigo de lineas.
 
 -- ej 19)
 
@@ -226,7 +235,16 @@ ocurrencia xs n = length [x | x <- xs , n == x]
 
 -- ej 22)
 
+split2prac :: [a] -> [([a],[a])]
+split2prac xs = [(take n xs,drop n xs) | n <- [0..length xs] ]
+
 -- ej 23) 
+
+sumaSegIni :: [Int] -> Int
+sumaSegIni xs = foldl (+) 0 [sum (take n xs) | n <- [0..length xs] ]
+-- la lista por comprension me va dando la suma de las listas
+-- que forman el conjunto de listas de subsegmentos iniciales
+-- luego hago un foldl con la operacion suma de la lista q me quedo(sumas)
 
 -- ej 24)
 
