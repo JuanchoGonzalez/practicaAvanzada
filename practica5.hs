@@ -77,15 +77,29 @@ filter :: (a -> Bool) -> [a] -> [a]
 filter f []     = []
 filter f (x:xs) | f x == True = x:filter f xs
                 | otherwise = filter f xs
+
+          filtrar :: (a -> Bool) -> [a] -> [a]
+filtrar f []     = []
+filtrar f (x:xs) = if (f x) then x:filtrar f xs else filtrar f xs      
 -}
 {-
 divs n = filter (esDivisor n) [1..n]
 
 divs 4 
-= [def de filter]
-filter (esDivisor 4) [1..4]
 = 
-
+filter (esDivisor 4) 1:[2..4]
+= [def de filter]
+1:filter (esDivisor 4) 2:[3..4]
+= [def de filter]
+1:2:filter (esDivisor 4) 3:[4]
+= [def de filter]
+1:2:filter (esDivisor 4) [4]
+= [def de filter]
+1:2:4:filter (esDivisor 4) []
+= [def de filter caso base]
+1:2:4:[]
+= [reescribiendo]
+[1,2,4]
 -}
 
 -- ej 7)
@@ -96,7 +110,11 @@ esPrimo n = length ([x | x <- [1..n], mod n x == 0]) == 2
 
 -- ej 8)
 
-sumCuad xs = foldr (+) 0 (cuad xs)
+sumCuad xs = foldr (+) 0 (cuad xs) -- cuad es una funcion que dada una lista de numeros te devuelve los cuadrados de los numeros
+
+-- otra opcion
+
+sumaCuad xs = foldl (+) 0 (map (^2) xs)
 
 -- ej 9)
 
@@ -113,7 +131,7 @@ factFold n = foldr (*) 1 [1..n]
 -- ej 12)
 
 and2 xs = foldr (&&) True xs
- 
+
 
 {-
 foldr :: (a -> b -> b) -> b -> [a] -> b
@@ -210,10 +228,9 @@ contatoriaEsta (x:xs) []     = 0
 contatoriaEsta (x:xs) (y:ys) | elem x (y:ys) = 1 + contatoriaEsta xs (y:ys)
                              | otherwise = contatoriaEsta xs (y:ys)
 
-
-
 -- con listas por comprension
 
+todosOcurrenEn2 :: (Eq a) => [a] -> [a] -> Bool
 todosOcurrenEn2 xs ys = length xs == length [x | x <- xs , elem x ys]   
 
 -- diferencia por recursion y por listas por comprension que diferencia de eficiencia, de codigo de lineas.
@@ -230,7 +247,7 @@ prodCartesiano xs ys = [(x,y) | x <- xs , y <- ys]
 
 -- ej 21)
 
-ocurrencia :: [Int] -> Int -> Int
+ocurrencia :: (Eq a) => [a] -> a -> Int
 ocurrencia xs n = length [x | x <- xs , n == x]
 
 -- ej 22)
@@ -242,6 +259,7 @@ split2prac xs = [(take n xs,drop n xs) | n <- [0..length xs] ]
 
 sumaSegIni :: [Int] -> Int
 sumaSegIni xs = foldl (+) 0 [sum (take n xs) | n <- [0..length xs] ]
+
 -- la lista por comprension me va dando la suma de las listas
 -- que forman el conjunto de listas de subsegmentos iniciales
 -- luego hago un foldl con la operacion suma de la lista q me quedo(sumas)
@@ -250,3 +268,41 @@ sumaSegIni xs = foldl (+) 0 [sum (take n xs) | n <- [0..length xs] ]
 
 infPares :: [Int]
 infPares = [2*n | n <- [0..] ]
+
+-- adicionales
+
+-- map mas general posible
+
+igualesA1 :: Int -> Bool
+igualesA1 x = x == 1
+
+mapab :: [Int] -> [Bool] 
+mapab xs = map (igualesA1) xs 
+
+-- importa repeticiones pero no importa orden
+-- multiConjunto "campeones" = [(c,1),(a,1),(m,1),(p,1),(o,1),(n,1),(e,2),(s,1)]
+multiConjunto :: (Eq a) => [a] -> [(a,Int)]
+multiConjunto xs = [(x,ocurrencia xs x) | x <- nub xs]
+
+-- nub saca repeticiones en una lista fueran 2 3 o n repeticiones.
+nub :: (Eq a) => [a] -> [a]
+nub [] = []
+nub (x:xs) | elem x xs = nub xs
+           | otherwise = x:nub xs
+
+-- ocurrencia :: [Int] -> Int -> Int
+-- ocurrencia xs n = length [x | x <- xs , n == x]
+-- matriz infinita, lista por comprension
+
+diag :: Int -> [(Int,Int)]
+diag n = [(i,n-i) | i <- [0..n]]
+
+allpars = concatLdeL [diag n | n <- [0..]]
+
+concatLdeL :: [[a]] -> [a]
+concatLdeL []       = []
+concatLdeL (xs:xss) = xs ++ concatLdeL xss
+
+
+
+
