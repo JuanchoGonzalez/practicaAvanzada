@@ -242,3 +242,64 @@
 -- fac 2
 -- orden aplicativo
 -- 
+
+
+-- lazy adicionales
+
+-- ej 1
+
+-- 2*cuadrado(head.[2,4,5,6,7,8])
+-- 2*(x*x)
+-- [x=(head.[2,4,5,6,7,8])]
+-- [x=2]
+-- 2*(2*2)
+-- 2*4 -- asocia asi por los parentesis sino lazy siempre del mas afuera
+-- 8 
+
+{-
+cuadrado (cuadrado (2))
+-- def cuadrado 
+x*x
+  [x=cuadrado 2]   
+-- def cuadrado
+  y*y
+   [y=2*2]
+-- aritmetica
+     z*z
+     [z=4]
+-- reemplazo
+    4*4
+-- aritmetica
+  16
+
+--cant de pasos 4
+
+-}
+
+-- ej 2)
+
+-- head.linf
+-- head.1:linf
+-- 1
+
+-- ej 3) 
+
+-- f.2.3
+-- def f 
+-- cuadrado.(f.2.2)
+-- def local 
+-- x*x
+--  [x=f.2.2]
+-- cuadrado.(f.2.1)
+--    y*y
+--  [y=f.2.1]
+-- cuadrado.(f.2.0)
+--      z*z
+--  [z=f.2.0]
+--      2*2
+--  [y=4]
+--    4*4
+--  [x=16]
+-- 16*16
+-- 256
+
