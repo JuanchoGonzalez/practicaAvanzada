@@ -87,7 +87,7 @@ xor3 x y | x == y = False
 primo :: Int -> Bool
 primo 0 = False
 primo n = length ([x | x <- [1..n] , mod n x == 0]) == 2
- 
+
 -- 9)
 
 primosMenores :: Int -> [Int]
