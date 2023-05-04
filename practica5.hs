@@ -44,7 +44,6 @@ cuad xs = map (^2) xs
 -- b que da el resultado tiene que dar resultados de [b]
 -- es decir cuad le tengo q pasar numeros xq la funcion me devuelve un numero 
 
-
 {-
 map :: (a -> b) -> [a] -> [b]
 map f [] = []
@@ -138,10 +137,30 @@ foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f z []     = z
 foldr f z (x:xs) = f x (foldr f z xs) 
 
+-- puede funcionar para listas infinitas el foldr.
+
 foldl :: (a -> b -> a) -> a -> [b] -> a
 foldl f z []     = z
 foldl f z (x:xs) = foldl f (f z x) xs 
+
+
+foldr && True [2>3,3 == 3,False]
+&& (2>3) (foldr && True [3 == 3 , False] )
+-- [aritmetica]
+&& (False) (foldr && True [3 == 3 , False] )
+-- por def de foldr
+False
+
+foldl && True [2>3,3 == 3,False]
+foldl && (&& True (2>3) , [3 == 3 , False] )
+foldl && (&& True [False && True]  ) , [False] )
+foldl && (&& True [False && True && False]  ) , [] )
+-- caso base
+False 
+
 -}
+
+
 {-
 and2 (1 < 2,2 < 3, 1 /= 0)
     = [def de foldr]
@@ -260,9 +279,52 @@ split2prac xs = [(take n xs,drop n xs) | n <- [0..length xs] ]
 sumaSegIni :: [Int] -> Int
 sumaSegIni xs = foldl (+) 0 [sum (take n xs) | n <- [0..length xs] ]
 
+-- [1,2,3,4]
+
+{-
+
+foldl (+) 0 [sum [], sum [1], sum [1,2], sum [1,2,3], sum [1,2,3,4]]
+-- [def sum]
+foldl (+) 0 [0, 1, 3, 6, 10]
+-- [def foldl]
+foldl (+) (0 + 0) [1,3,6,10]
+-- [def foldl]
+foldl (+) (0 + 0 + 1) [3,6,10]
+-- [def foldl]
+foldl (+) ((0 + 0) + 1) + 3) [6,10]
+-- [def foldl]
+foldl (+) (((0 + 0) + 1) + 3) + 6) [10]
+-- [def foldl]
+foldl (+) ((((0 + 0) + 1) + 3) + 6) + 10) []
+-- [def foldl]
+-- ((((0 + 0) + 1) + 3) + 6) + 10) 
+-- [def +]
+-- ((((0 + 1) + 3) + 6) + 10)
+-- [def +]
+-- (((1 + 3) + 6) + 10)
+-- [def +]
+-- ((4 + 6) + 10)
+-- [def +]
+-- (10 + 10)
+-- 20 
+
 -- la lista por comprension me va dando la suma de las listas
 -- que forman el conjunto de listas de subsegmentos iniciales
 -- luego hago un foldl con la operacion suma de la lista q me quedo(sumas)
+
+-}
+
+
+-- suma sugsegmentos iniciales
+
+segFinales :: [Int] -> [[Int]]
+segFinales xs = [tirar xs n | n <- [0..length xs]]
+
+tirar :: [Int] -> Int ->[Int]
+tirar [] _     = []
+tirar xs 0     = xs 
+tirar (x:xs) n = tirar xs (n-1)
+
 
 -- ej 24)
 
@@ -292,6 +354,7 @@ nub (x:xs) | elem x xs = nub xs
 
 -- ocurrencia :: [Int] -> Int -> Int
 -- ocurrencia xs n = length [x | x <- xs , n == x]
+
 -- matriz infinita, lista por comprension
 
 diag :: Int -> [(Int,Int)]

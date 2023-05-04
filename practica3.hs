@@ -86,7 +86,7 @@ repet (x:xs) z n | (x == z) = repet xs z (n-1)
                  | otherwise = repet xs z n
 
 -- ej 9)
-
+-- . acceso directo
 nelem :: [a] -> Int -> a
 nelem [] _ = error "No tiene sentido"
 nelem (x:xs) 0 = x

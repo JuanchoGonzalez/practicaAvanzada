@@ -37,7 +37,6 @@
 -- [aritmetica]
 -- 8 
 
-
 -- ej 2)
 
 -- linf = 1:linf
