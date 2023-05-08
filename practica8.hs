@@ -8,12 +8,16 @@ maj True _ True = True
 maj _ True True = True
 maj _ _ _       = False
 
-existe :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
-existe xs ys f = or [f x | x <- xs]
-
+existe :: [Int] -> [Int] -> (Int -> [Int] -> Bool)-> Bool
+existe xs ys f = or [odd x | x <- ys]
+{-
 paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
-paraTodo xs ys f = and [f x | x <- xs]
+paraTodo xs ys f = and [f x | x <- ys]
+-}
 
-f :: [a] -> Bool
+f :: Int -> [Int] -> Bool
+f n [] = False
+f n (x:xs) | mod x 2 /= 0 = True   
+           | otherwise = False
 
 
