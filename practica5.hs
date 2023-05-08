@@ -365,7 +365,3 @@ allpars = concatLdeL [diag n | n <- [0..]]
 concatLdeL :: [[a]] -> [a]
 concatLdeL []       = []
 concatLdeL (xs:xss) = xs ++ concatLdeL xss
-
-
-
-
